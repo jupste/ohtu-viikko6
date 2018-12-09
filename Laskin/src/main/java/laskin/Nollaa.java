@@ -26,7 +26,8 @@ public class Nollaa extends Operaatio {
 
     @Override
     public void peru() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.sovellus.palauta();
+        this.tuloskentta.setText(Integer.toString(sovellus.tulos()));
     }
     
 }

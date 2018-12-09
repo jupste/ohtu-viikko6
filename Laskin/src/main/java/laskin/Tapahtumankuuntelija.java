@@ -11,9 +11,9 @@ public class Tapahtumankuuntelija implements EventHandler {
     private Button undo;
     private Sovelluslogiikka sovellus;
     
-    private Map<Button, Command> komennot;
-    private Command edellinen = null;
- 
+    private Map<Button, Operaatio> komennot;
+    private Operaatio edellinen = null;
+    
 
     public Tapahtumankuuntelija(TextField tuloskentta, TextField syotekentta, Button plus, Button miinus, Button nollaa, Button undo) {
         this.undo = undo;
@@ -27,12 +27,14 @@ public class Tapahtumankuuntelija implements EventHandler {
     @Override
     public void handle(Event event) {
         if ( event.getTarget() != undo ) {
-            Command komento = komennot.get((Button)event.getTarget());
+            Operaatio komento = komennot.get((Button)event.getTarget());
             komento.suorita();
             edellinen = komento;
         } else {
-            edellinen.peru();
-            edellinen = null;
+            try{
+                edellinen.peru();
+                edellinen = null;
+            }catch (NullPointerException e){}
         }                  
     }
 

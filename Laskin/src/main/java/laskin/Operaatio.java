@@ -12,7 +12,8 @@ import javafx.scene.control.TextField;
  *
  * @author jussiste
  */
-public abstract class Operaatio implements Command{
+public abstract class Operaatio{
+
     protected TextField tuloskentta;
     protected TextField syotekentta;
     protected Button nollaa;
@@ -26,4 +27,8 @@ public abstract class Operaatio implements Command{
         this.undo = undo;
         this.sovellus = sovellus;
     }
+
+    abstract void suorita();
+
+    abstract void peru();
 }

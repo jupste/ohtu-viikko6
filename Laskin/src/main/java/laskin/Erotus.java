@@ -37,6 +37,7 @@ public class Erotus extends Operaatio {
 
     @Override
     public void peru() {
-        return;
+        this.sovellus.palauta();
+        this.tuloskentta.setText(Integer.toString(sovellus.tulos()));
     }
 }
