@@ -21,11 +21,21 @@ public class QueryBuilder {
         this.matchers = new ArrayList<>();
     }
 
-    public Matcher matcher() {
+    public Matcher buildOr() {
         Matcher[] list = new Matcher[this.matchers.size()];
         for (int i = 0; i < list.length; i++) {
             list[i] = matchers.get(i);
         }
+        matchers=new ArrayList<>();
+        return new Or(list);
+    }
+
+    public Matcher buildAnd() {
+        Matcher[] list = new Matcher[this.matchers.size()];
+        for (int i = 0; i < list.length; i++) {
+            list[i] = matchers.get(i);
+        }
+        matchers=new ArrayList<>();
         return new And(list);
     }
 
@@ -37,12 +47,6 @@ public class QueryBuilder {
 
     public QueryBuilder hasFewerThan(int value, String category) {
         current = new HasFewerThan(value, category);
-        this.matchers.add(current);
-        return this;
-    }
-
-    public QueryBuilder and(Matcher... matchers) {
-        current = new And(matchers);
         this.matchers.add(current);
         return this;
     }
